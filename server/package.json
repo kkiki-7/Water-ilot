@@ -1,0 +1,14 @@
+{
+  "name": "water-quality-server",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "aedes": "^1.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mqtt": "^5.15.1",
+    "node-fetch": "^3.3.2",
+    "ws": "^8.20.1"
+  }
+}

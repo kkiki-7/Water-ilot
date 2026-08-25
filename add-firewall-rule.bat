@@ -1,0 +1,6 @@
+@echo off
+echo Adding firewall rule for Water Quality Dashboard (port 3001)...
+netsh advfirewall firewall add rule name="Water Quality Dashboard (3001)" dir=in action=allow protocol=TCP localport=3001
+echo.
+echo Done! Press any key to close...
+pause >nul
