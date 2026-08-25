@@ -2,6 +2,10 @@
 
 基于 **React + Node.js** 的水质实时监测与远程控制仪表盘，对接中国移动 **OneNET 物联网平台**，实时展示巡检车采集的水质数据，并支持远程控制设备与智能分析。
 
+## 🔗 在线访问
+
+**https://water-quality-dashboard-q7ig.onrender.com**
+
 ## ✨ 功能特性
 
 - **实时监测**：电导率（EC）、PH 值、浊度（NTU）、水浸（IMM）四项核心指标
