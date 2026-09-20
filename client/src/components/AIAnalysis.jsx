@@ -11,10 +11,15 @@ export default function AIAnalysis({ data }) {
     try {
       const res = await runAnalysis(data.PH, data.NTU, data.EC, data.IMM);
       if (res && res.code === 0) setAnalysis(res.data);
+    } catch {
+      // 网络错误时静默处理
     } finally {
       setLoading(false);
     }
   }
+
+  const sourceLabel = analysis?.source === "ai" ? "MiMo AI" : "本地规则";
+  const sourceColor = analysis?.source === "ai" ? "var(--accent3)" : "var(--text-muted)";
 
   return (
     <div className="glass-card animate-in" style={{
@@ -74,6 +79,21 @@ export default function AIAnalysis({ data }) {
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          {/* 分析来源标签 */}
+          <div style={{
+            display: "flex", justifyContent: "flex-end", marginBottom: -6
+          }}>
+            <span style={{
+              fontSize: 10, fontFamily: "var(--font-mono)",
+              color: sourceColor, opacity: 0.8,
+              padding: "2px 8px", borderRadius: 8,
+              background: analysis.source === "ai" ? "rgba(139,92,246,0.08)" : "rgba(255,255,255,0.03)",
+              border: `1px solid ${analysis.source === "ai" ? "rgba(139,92,246,0.2)" : "var(--border-subtle)"}`
+            }}>
+              {sourceLabel}
+            </span>
+          </div>
+
           {/* 水质等级 */}
           <div style={{
             display: "flex", alignItems: "center", gap: 14,
