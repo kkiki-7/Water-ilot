@@ -33,4 +33,19 @@ router.post("/rod", async (req, res) => {
   }
 });
 
+// Servo_Control: l=左转 r=右转 s=停止 (匹配STM32代码)
+router.post("/servo", async (req, res) => {
+  const { cmd } = req.body;
+  const map = { left: "l", right: "r", stop: "s" };
+  const value = map[cmd];
+  if (value === undefined) return res.status(400).json({ code: -1, msg: `无效舵机指令: ${cmd}` });
+
+  try {
+    await setProperty({ Servo_Control: value });
+    res.json({ code: 0, cmd });
+  } catch (e) {
+    res.json({ code: -1, msg: e.message });
+  }
+});
+
 export default router;

@@ -30,6 +30,13 @@ export function controlRod(cmd) {
   });
 }
 
+export function controlServo(cmd) {
+  return request("/control/servo", {
+    method: "POST",
+    body: JSON.stringify({ cmd })
+  });
+}
+
 export function runAnalysis(ph, ntu, ec, imm) {
   return request("/analysis/check", {
     method: "POST",
