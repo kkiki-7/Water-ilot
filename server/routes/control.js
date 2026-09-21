@@ -33,7 +33,7 @@ router.post("/rod", async (req, res) => {
   }
 });
 
-// Servo_Control: l=左转 r=右转 s=停止 (匹配STM32代码)
+// Servo: l=左转 r=右转 s=停止 (匹配STM32代码，物模型标识符为 Servo)
 router.post("/servo", async (req, res) => {
   const { cmd } = req.body;
   const map = { left: "l", right: "r", stop: "s" };
@@ -41,9 +41,12 @@ router.post("/servo", async (req, res) => {
   if (value === undefined) return res.status(400).json({ code: -1, msg: `无效舵机指令: ${cmd}` });
 
   try {
-    await setProperty({ Servo_Control: value });
+    console.log(`🎯 舵机指令: ${cmd} → Servo: ${value}`);
+    const result = await setProperty({ Servo: value });
+    console.log(`✅ 舵机 OneNET 响应:`, JSON.stringify(result));
     res.json({ code: 0, cmd });
   } catch (e) {
+    console.error(`❌ 舵机指令失败:`, e.message);
     res.json({ code: -1, msg: e.message });
   }
 });
