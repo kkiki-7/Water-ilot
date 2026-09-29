@@ -33,7 +33,7 @@ router.post("/rod", async (req, res) => {
   }
 });
 
-// Servo: l=左转 r=右转 s=停止 (匹配STM32代码，物模型标识符为 Servo)
+// Servo: l=左转 r=右转 s=停止 (物模型标识符为 Servo，固件需匹配)
 router.post("/servo", async (req, res) => {
   const { cmd } = req.body;
   const map = { left: "l", right: "r", stop: "s" };
